@@ -3,4 +3,6 @@ html,body,header, #intro {
 }
 #intro {
     background: url(../img/train.jpg);
+      -webkit-background-size: cover;
+      background-size: cover;
 }
