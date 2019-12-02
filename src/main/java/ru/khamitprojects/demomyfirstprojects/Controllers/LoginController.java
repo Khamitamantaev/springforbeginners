@@ -34,6 +34,10 @@ public class LoginController {
         if(result.hasErrors()) {
             return "register";
         }
+
+        if(!userRepr.getPassword().equals(userRepr.getMatchingPassword())){
+
+        }
         return "redirect:/login";
     }
 
