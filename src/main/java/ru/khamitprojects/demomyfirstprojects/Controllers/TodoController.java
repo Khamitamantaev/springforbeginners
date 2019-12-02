@@ -11,7 +11,7 @@ public class TodoController {
         return "index";
     }
 
-    @GetMapping
+    @GetMapping("/todo")
     public String todoPage() {
         return "todo";
     }
