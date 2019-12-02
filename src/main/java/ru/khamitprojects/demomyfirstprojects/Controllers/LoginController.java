@@ -50,6 +50,8 @@ public class LoginController {
 
 
         }
+
+        userService.create(userRepr);
         return "redirect:/login";
     }
 
