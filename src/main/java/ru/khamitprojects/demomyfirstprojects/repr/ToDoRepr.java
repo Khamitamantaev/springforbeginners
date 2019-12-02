@@ -1,14 +1,19 @@
 package ru.khamitprojects.demomyfirstprojects.repr;
 
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class ToDoRepr { // будет содержать представления todo записи
     private long id;
+
+    @NotEmpty
     private String description;
 
     private String username;
 
+    @NotNull
     private LocalDate targetDate;
 
     public ToDoRepr() {
