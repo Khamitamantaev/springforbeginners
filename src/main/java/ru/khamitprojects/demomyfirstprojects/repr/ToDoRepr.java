@@ -1,6 +1,8 @@
 package ru.khamitprojects.demomyfirstprojects.repr;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -14,6 +16,7 @@ public class ToDoRepr { // будет содержать представлен�
     private String username;
 
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate targetDate;
 
     public ToDoRepr() {
