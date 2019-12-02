@@ -24,7 +24,7 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public String registerNewUser() {
+    public String registerNewUser(@ModelAttribute("user") @Valid UserRepr userRepr) {
         return "register";
     }
 
