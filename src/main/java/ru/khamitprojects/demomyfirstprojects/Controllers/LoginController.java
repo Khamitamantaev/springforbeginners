@@ -36,6 +36,9 @@ public class LoginController {
         }
 
         if(!userRepr.getPassword().equals(userRepr.getMatchingPassword())){
+            result.rejectValue("password","", "Password not maching");
+            return "register";
+
 
         }
         return "redirect:/login";
