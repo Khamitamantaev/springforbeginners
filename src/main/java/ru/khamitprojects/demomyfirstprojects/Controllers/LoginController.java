@@ -2,6 +2,7 @@ package ru.khamitprojects.demomyfirstprojects.Controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.khamitprojects.demomyfirstprojects.repr.UserRepr;
+import ru.khamitprojects.demomyfirstprojects.service.UserService;
 
 import javax.validation.Valid;
 
@@ -16,6 +18,13 @@ import javax.validation.Valid;
 public class LoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    private final UserService userService;
+
+    @Autowired
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/login")
     public String loginPage() {
