@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import ru.khamitprojects.demomyfirstprojects.persist.entity.User;
 import ru.khamitprojects.demomyfirstprojects.persist.repo.UserRepository;
+
+import java.util.Optional;
 
 public class UserAuthService implements UserDetailsService {
 
@@ -17,9 +20,9 @@ public class UserAuthService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        userRepository.f
+        Optional<User> optUser = userRepository.getUserByUsername(username);
         return null;
     }
 }
