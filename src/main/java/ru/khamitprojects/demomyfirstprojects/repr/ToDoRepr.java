@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public class ToDoRepr { // будет содержать представления todo записи
+public class ToDoRepr {
     private long id;
 
     @NotEmpty

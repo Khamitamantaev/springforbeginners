@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     private PasswordEncoder passwordEncoder;
     private UserAuthService userAuthService;
 
@@ -21,15 +22,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Autowired
+    public void setUserAuthService(UserAuthService userAuthService) {
+        this.userAuthService = userAuthService;
+    }
+
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").authenticated()
+                .antMatchers("/todo/*").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -47,10 +54,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.setUserDetailsService(userAuthService);
         auth.setPasswordEncoder(passwordEncoder);
         return auth;
-    }
-
-    @Autowired
-    public void setUserAuthService(UserAuthService userAuthService) {
-        this.userAuthService = userAuthService;
     }
 }

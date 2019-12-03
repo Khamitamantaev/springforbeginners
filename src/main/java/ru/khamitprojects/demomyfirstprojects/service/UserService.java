@@ -9,6 +9,7 @@ import ru.khamitprojects.demomyfirstprojects.repr.UserRepr;
 
 import javax.transaction.Transactional;
 
+
 @Service
 @Transactional
 public class UserService {
