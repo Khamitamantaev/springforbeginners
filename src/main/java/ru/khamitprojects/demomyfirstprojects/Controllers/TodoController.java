@@ -5,16 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import ru.khamitprojects.demomyfirstprojects.service.ToDoService;
 import ru.khamitprojects.demomyfirstprojects.service.UserService;
 
 @Controller
 public class TodoController {
 
-    private UserService userService;
+    private ToDoService toDoService;
 
     @Autowired
-    public TodoController(UserService userService) {
-        this.userService = userService;
+    public TodoController(ToDoService toDoService) {
+        this.toDoService = toDoService;
     }
 
     @GetMapping("/")
@@ -24,6 +25,7 @@ public class TodoController {
 
     @GetMapping("/todo/{id}")
     public String todoPage(@PathVariable("id") Long id , Model model) {
+        toDoService.findById(id).orElseThrow()
         return "todo";
     }
 
