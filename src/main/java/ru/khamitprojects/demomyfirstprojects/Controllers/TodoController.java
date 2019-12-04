@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import ru.khamitprojects.demomyfirstprojects.repr.ToDoRepr;
 import ru.khamitprojects.demomyfirstprojects.service.ToDoService;
 import ru.khamitprojects.demomyfirstprojects.service.UserService;
 
@@ -25,7 +26,8 @@ public class TodoController {
 
     @GetMapping("/todo/{id}")
     public String todoPage(@PathVariable("id") Long id , Model model) {
-        toDoService.findById(id).orElseThrow(ResoureNotFoundException::new);
+        ToDoRepr toDoRepr = toDoService.findById(id).orElseThrow(ResoureNotFoundException::new);
+        model.addAttribute("todo", toDoRepr);
         return "todo";
     }
 
