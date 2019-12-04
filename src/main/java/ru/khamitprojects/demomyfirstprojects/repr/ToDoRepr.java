@@ -26,7 +26,7 @@ public class ToDoRepr {
         this.id = toDo.getId();
         this.description = toDo.getDescription();
         this.username = toDo.getUser().getUsername();
-        
+
     }
 
     public long getId() {
