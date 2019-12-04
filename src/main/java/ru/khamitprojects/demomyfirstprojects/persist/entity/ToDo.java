@@ -14,7 +14,7 @@ public class ToDo {
     @Column
     private String description;
 
-    @ManyToOne
+    @ManyToOne// данная таблица , здесь будет связь , многие к одному, что значит , у нас есть залогинивщийся пользователь, у которого, будет много записей на его странице
     @JoinColumn(name = "user_id")
     private User user;
 
