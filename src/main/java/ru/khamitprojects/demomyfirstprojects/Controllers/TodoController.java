@@ -2,6 +2,7 @@ package ru.khamitprojects.demomyfirstprojects.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.khamitprojects.demomyfirstprojects.service.UserService;
@@ -22,7 +23,7 @@ public class TodoController {
     }
 
     @GetMapping("/todo/{id}")
-    public String todoPage(@PathVariable("id") Long Id) {
+    public String todoPage(@PathVariable("id") Long id , Model model) {
         return "todo";
     }
 
