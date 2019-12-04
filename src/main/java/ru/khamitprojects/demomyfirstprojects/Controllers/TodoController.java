@@ -25,7 +25,7 @@ public class TodoController {
 
     @GetMapping("/todo/{id}")
     public String todoPage(@PathVariable("id") Long id , Model model) {
-        toDoService.findById(id).orElseThrow()
+        toDoService.findById(id).orElseThrow(ResoureNotFoundException::new);
         return "todo";
     }
 
