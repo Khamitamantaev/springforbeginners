@@ -21,6 +21,6 @@ public class ToDoService {
     }
     public List<ToDoRepr> findToDosByUserId(Long userId){
         return toDoRepository.findToDosByUserId(userId);
-        
+
     }
 }
