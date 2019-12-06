@@ -34,7 +34,14 @@ public class UserService {
         userRepository.save(user);
 
     }
-    pub
+    public Optional<Long> getCurrentUserById() {
+       Optional<String> currentUser = getCurrentUser();
+        if(currentUser.isPresent()){
+            return userRepository.getUserByUsername(currentUser.get())
+                    .map(User::getId);
+        }
+        return Optional.empty();
+    }
 
     public Optional<String> getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
