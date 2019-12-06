@@ -1,5 +1,7 @@
 package ru.khamitprojects.demomyfirstprojects.persist.entity;
 
+import ru.khamitprojects.demomyfirstprojects.repr.ToDoRepr;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -23,6 +25,8 @@ public class ToDo {
 
     public ToDo() {
     }
+
+
 
     public long getId() {
         return id;
