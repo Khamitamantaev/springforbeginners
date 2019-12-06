@@ -50,6 +50,7 @@ public class TodoController {
     @PostMapping("/todo/create")
     public String createTodoPost(@ModelAttribute("todo") @Valid ToDoRepr toDoRepr,
                                  BindingResult result) {
+        if (result.hasErrors()) {
             return "todo";
         }
 

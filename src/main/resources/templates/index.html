@@ -58,6 +58,9 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tr th:if="${todos.empty}">
+                    <td class="text-center" colspan="5">No data</td>
+                </tr>
                 <tr>
                     <th scope="row">1</th>
                     <td>Bootstrap 4 CDN and Starter Template</td>
