@@ -33,9 +33,7 @@
         </ul>
 
         <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-            <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/login}">Login</a>
             <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
-            <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/register}">Register</a>
         </form>
     </div>
 </nav>
@@ -43,7 +41,7 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <a class="btn btn-primary" th:href="@{/todo}">Add Todo</a>
+            <a class="btn btn-primary" th:href="@{/todo/create}">Add Todo</a>
         </div>
 
         <div class="col-12">

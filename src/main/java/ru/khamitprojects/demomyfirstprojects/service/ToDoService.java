@@ -2,7 +2,6 @@ package ru.khamitprojects.demomyfirstprojects.service;
 
 import org.springframework.stereotype.Service;
 import ru.khamitprojects.demomyfirstprojects.persist.entity.ToDo;
-import ru.khamitprojects.demomyfirstprojects.persist.entity.User;
 import ru.khamitprojects.demomyfirstprojects.persist.repo.ToDoRepository;
 import ru.khamitprojects.demomyfirstprojects.persist.repo.UserRepository;
 import ru.khamitprojects.demomyfirstprojects.repr.ToDoRepr;
@@ -19,8 +18,9 @@ public class ToDoService {
     private ToDoRepository toDoRepository;
     private UserRepository userRepository;
 
-    public ToDoService(ToDoRepository toDoRepository) {
+    public ToDoService(ToDoRepository toDoRepository, UserRepository userRepository) {
         this.toDoRepository = toDoRepository;
+        this.userRepository = userRepository;
     }
     public Optional<ToDoRepr> findById(Long id){
         return toDoRepository.findById(id).map(ToDoRepr::new);
@@ -31,18 +31,16 @@ public class ToDoService {
     }
 
     public void save(ToDoRepr toDoRepr) {
-        Optional<String> currentUser  = getCurrentUser();
-        if(currentUser.isPresent()) {
-            Optional<User> optUser = userRepository.getUserByUsername(currentUser.get());
-            if(optUser.isPresent()) {
-                ToDo toDo = new ToDo();
-                toDo.setId(toDoRepr.getId());
-                toDo.setDescription(toDoRepr.getDescription());
-                toDo.setTargetDate(toDoRepr.getTargetDate());
-                toDo.setUser(optUser.get());
-                toDoRepository.save(toDo);
-            }
-        }
+        getCurrentUser()
+                .flatMap(userRepository::getUserByUsername)
+                .ifPresent(user -> {
+                    ToDo toDo = new ToDo();
+                    toDo.setId(toDoRepr.getId());
+                    toDo.setDescription(toDoRepr.getDescription());
+                    toDo.setTargetDate(toDoRepr.getTargetDate());
+                    toDo.setUser(user);
+                    toDoRepository.save(toDo);
+                });
     }
 
     public void delete(Long id) {

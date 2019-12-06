@@ -12,9 +12,8 @@ import java.util.List;
 @Repository
 public interface ToDoRepository extends CrudRepository<ToDo, Long> {
 
-     @Query("select new ru.khamitprojects.demomyfirstprojects.repr.ToDoRepr(t) t from ToDo t" +
-     "inner join fetch User u"+
-             "where u.id = :userId")
-     List<ToDoRepr> findToDosByUserId(@Param("userId") Long userId);
-
-    }
+    @Query("select new ru.khamitprojects.demomyfirstprojects.repr.ToDoRepr(t.id, t.description, t.user.username, t.targetDate) " +
+            "from ToDo t " +
+            "where t.user.id = :userId")
+    List<ToDoRepr> findToDosByUserId(@Param("userId") Long userId);
+}

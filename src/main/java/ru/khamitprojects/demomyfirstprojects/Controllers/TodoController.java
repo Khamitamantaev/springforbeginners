@@ -38,7 +38,7 @@ public class TodoController {
     public String todoPage(@PathVariable("id") Long id , Model model) {
         ToDoRepr toDoRepr = toDoService.findById(id).orElseThrow(ResourceNotFoundException::new);
         model.addAttribute("todo", toDoRepr);
-        return "todo"; // остановился на 47 минуте видео 
+        return "todo";
     }
 
     @GetMapping("/todo/create")
