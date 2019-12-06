@@ -34,7 +34,7 @@ public class UserService {
         userRepository.save(user);
 
     }
-    public Optional<Long> getCurrentUserById() {
+    public Optional<Long> getCurrentUserId() {
        Optional<String> currentUser = getCurrentUser();
         if(currentUser.isPresent()){
             return userRepository.getUserByUsername(currentUser.get())
