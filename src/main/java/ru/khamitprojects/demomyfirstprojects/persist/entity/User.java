@@ -1,6 +1,7 @@
 package ru.khamitprojects.demomyfirstprojects.persist.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -15,6 +16,13 @@ public class User {
 
    @Column(nullable = false)
     private String password;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,// все операции каскадно
+            orphanRemoval = true //мы хотим удалять записи в которых отсутствую поля ответственные за связь
+    )
+   private List<ToDo> todos; // множество записей ToDo
 
     public User() {
     }

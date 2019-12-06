@@ -2,6 +2,7 @@ package ru.khamitprojects.demomyfirstprojects.repr;
 
 
 import org.springframework.format.annotation.DateTimeFormat;
+import ru.khamitprojects.demomyfirstprojects.persist.entity.ToDo;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -20,6 +21,18 @@ public class ToDoRepr {
     private LocalDate targetDate;
 
     public ToDoRepr() {
+    }
+    public ToDoRepr(Long id, @NotEmpty String description, String username, @NotNull LocalDate targetDate) {
+        this.id = id;
+        this.description = description;
+        this.username = username;
+        this.targetDate = targetDate;
+    }
+    public ToDoRepr (ToDo toDo){
+        this.id = toDo.getId();
+        this.description = toDo.getDescription();
+        this.username = toDo.getUser().getUsername();
+        this.targetDate = toDo.getTargetDate();
     }
 
     public long getId() {
